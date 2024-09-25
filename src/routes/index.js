@@ -1,11 +1,10 @@
 import express from "express";
-import livros from "./livrosRoutes.js";
-import autores from "./autoresRoutes.js";
+import pedidos from "./pedidosRoutes.js";
+import moradores from "./moradoresRoutes.js";
+import condominios from "./condominiosRoutes.js"
 
 const routes = (app) => {
-    app.route("/").get((req, res) => res.status(200).send("Curso de Node.js"));
-
-    app.use(express.json(), livros, autores);
+    app.use(express.json(), pedidos, moradores, condominios);
 };
 
 export default routes;
