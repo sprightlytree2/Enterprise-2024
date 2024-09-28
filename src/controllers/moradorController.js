@@ -7,6 +7,11 @@ class MoradorController {
         try {
             const id = req.params.id;
             const moradorEncontrado = await morador.findById(id).populate("pedidos");
+
+            if(!moradorEncontrado){
+                return res.status(400).json("Morador não encontrado");
+            }
+
             res.status(200).json(moradorEncontrado);
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao listar morador por id`});
@@ -27,7 +32,12 @@ class MoradorController {
     static async atualizarMorador(req, res){
         try {
             const id = req.params.id;
-            await morador.findByIdAndUpdate(id, req.body);
+            var moradorAtualizado = await morador.findByIdAndUpdate(id, req.body);
+
+            if(!moradorAtualizado){
+                return res.status(400).json("Morador não encontrado");
+            }
+            
             res.status(200).json({ message: "Morador atualizado" });
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao atualizar morador`});

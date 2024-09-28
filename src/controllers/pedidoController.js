@@ -17,6 +17,11 @@ class PedidoController {
         try {
             const id = req.params.id;
             const pedidoEncontrado = await pedido.findById(id);
+
+            if(!pedidoEncontrado){
+                return res.status(400).json("Pedido não encontrado");
+            }
+
             res.status(200).json(pedidoEncontrado);
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao listar pedido por id`});
@@ -39,7 +44,12 @@ class PedidoController {
     static async atualizarPedido(req, res){
         try {
             const id = req.params.id;
-            await pedido.findByIdAndUpdate(id, req.body);
+            const pedidoAtualizado = await pedido.findByIdAndUpdate(id, req.body);
+
+            if(!pedidoAtualizado){
+                return res.status(400).json("Pedido não encontrado");
+            }
+            
             res.status(200).json({ message: "Pedido atualizado" });
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao atualizar pedido`});
