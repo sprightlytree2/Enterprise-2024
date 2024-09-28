@@ -6,6 +6,7 @@ const pedidoSchema = new mongoose.Schema({
     descricao: { type: String },
     previsao_chegada: { type: String },
     local_entrega: { type: String },
+    status: { type: String}
 },  {versionKey: false});
 
 const pedido = mongoose.model("pedido", pedidoSchema);

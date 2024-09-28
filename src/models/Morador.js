@@ -13,9 +13,9 @@ const moradorSchema = new mongoose.Schema({
     apartamento: { type: String },
     eh_entregador: { type: Boolean },
     senha: { type: String },
-    pedido: pedidoSchema
+    pedidos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'pedido'}]
 },  {versionKey: false, collection: "moradors"});
 
 const morador = mongoose.model("morador", moradorSchema);
 
-export { morador, moradorSchema };
+export default morador;

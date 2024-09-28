@@ -1,6 +1,17 @@
 import { pedido } from "../models/Pedido.js";
+import  moradorRepo from "../models/Morador.js";
 
 class PedidoController {
+
+    static async listarPedidos(req, res) {
+        try {
+            const id = req.params.id;
+            const pedidoEncontrado = await pedido.findById(id);
+            res.status(200).json(pedido);
+        } catch (error) {
+            res.status(500).json({ message: `${error.message} - Falha ao listar pedido por id`});
+        }
+    }
 
     static async listarPedidoPorId(req, res) {
         try {
@@ -14,8 +25,11 @@ class PedidoController {
     
     static async cadastrarPedido(req, res){
         try {
-            const novoPedido = await pedido.create(req.body);
-            res.status(201).json({ message: "Criado com sucesso", pedido: novoPedido});
+            var pedidoParaCadastrar = req.body;
+            pedidoParaCadastrar.status = "Aguardando chegada";
+            const novoPedido = await pedido.create(pedidoParaCadastrar);
+            const moradorId = String(req.query.moradorId);
+            VincularPedidoAoCondominio(novoPedido, moradorId, res);
         } 
         catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao cadastrar pedido`});
@@ -42,5 +56,20 @@ class PedidoController {
         }
     };
 };
+
+async function VincularPedidoAoCondominio(pedido, moradorId, res) {
+    
+    const moradorAtualizado = await moradorRepo.findByIdAndUpdate(
+        moradorId,
+        { $push: { pedidos: pedido._id } }, // Utilizando $push para adicionar o morador ao array
+        { new: true } // Retorna o documento atualizado
+    );
+
+    if (!moradorAtualizado) {
+        return res.status(400).json({ message: "Morador não encontrado" });
+    }
+
+    return res.status(201).json({ message: "Pedido cadastrado com sucesso", pedido: pedido});
+}
 
 export default PedidoController;

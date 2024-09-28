@@ -3,6 +3,9 @@ import conectaNaDataBase from "./config/dbConnect.js";
 import condominiosRoutes from "./routes/condominiosRoutes.js"; // Importando rotas de condomínios
 import moradoresRoutes from "./routes/moradoresRoutes.js"; // Importando rotas de moradores
 import pedidosRoutes from "./routes/pedidosRoutes.js"; // Importando rotas de pedidos
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Criando a instância do app Express
 const app = express();

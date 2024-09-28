@@ -1,4 +1,4 @@
-import {morador} from "../models/Morador.js";
+import morador from "../models/Morador.js";
 import condominioRepo from "../models/Condominio.js"
 
 class MoradorController {

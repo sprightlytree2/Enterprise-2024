@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { morador } from "./Morador.js";
+import  morador from "./Morador.js";
 
 const condominioSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId },
