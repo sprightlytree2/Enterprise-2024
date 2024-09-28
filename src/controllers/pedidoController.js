@@ -17,7 +17,7 @@ class PedidoController {
         try {
             const id = req.params.id;
             const pedidoEncontrado = await pedido.findById(id);
-            res.status(200).json(pedido);
+            res.status(200).json(pedidoEncontrado);
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao listar pedido por id`});
         }

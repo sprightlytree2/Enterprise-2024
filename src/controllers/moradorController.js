@@ -6,7 +6,7 @@ class MoradorController {
     static async listarMoradorPorId(req, res) {
         try {
             const id = req.params.id;
-            const moradorEncontrado = await morador.findById(id);
+            const moradorEncontrado = await morador.findById(id).populate("pedidos");
             res.status(200).json(moradorEncontrado);
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao listar morador por id`});
