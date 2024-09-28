@@ -1,10 +1,9 @@
-import express from "express";
-import pedidos from "./routes/pedidosRoutes.js";
-import moradores from "./routes/moradoresRoutes.js";
-import condominios from "./routes/condominiosRoutes.js"
+import app from "./app.js"; // Importa a configuração do app do Express
 
-const routes = (app) => {
-    app.use(express.json(), pedidos, moradores, condominios);
-};
+// Definindo a porta. Vercel usa automaticamente a variável de ambiente PORT.
+const PORT = process.env.PORT || 3000;
 
-export default routes;
+// Inicializando o servidor na porta correta
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
