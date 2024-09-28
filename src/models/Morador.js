@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { pedidoSchema } from "./Pedido.js";
 
 const moradorSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId },
@@ -11,7 +10,7 @@ const moradorSchema = new mongoose.Schema({
     bloco: { type: String },
     andar: { type: String },
     apartamento: { type: String },
-    eh_entregador: { type: Boolean },
+    eh_entregador: { type: Boolean, default: false },
     senha: { type: String },
     pedidos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'pedido'}]
 },  {versionKey: false, collection: "moradors"});

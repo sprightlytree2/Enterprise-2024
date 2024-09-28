@@ -6,6 +6,11 @@ class CondominioController {
         try {
             const id = req.params.id;
             const condominioEncontrado = await condominio.findById(id).populate("moradores");
+
+            if(!condominioEncontrado){
+                return res.status(400).json("Condominio não encontrado");
+            }
+
             res.status(200).json(condominioEncontrado);
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao listar condominio por id`});

@@ -3,6 +3,7 @@ import conectaNaDataBase from "./config/dbConnect.js";
 import condominiosRoutes from "./routes/condominiosRoutes.js"; // Importando rotas de condomínios
 import moradoresRoutes from "./routes/moradoresRoutes.js"; // Importando rotas de moradores
 import pedidosRoutes from "./routes/pedidosRoutes.js"; // Importando rotas de pedidos
+import loginRoutes from "./routes/loginRoutes.js";
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -27,5 +28,6 @@ app.use(express.json());
 app.use(condominiosRoutes); // Usando as rotas de condomínios
 app.use(moradoresRoutes); // Usando as rotas de moradores
 app.use(pedidosRoutes); // Usando as rotas de pedidos
+app.use(loginRoutes);
 
 export default app;
