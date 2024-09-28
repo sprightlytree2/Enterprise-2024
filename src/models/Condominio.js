@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { moradorSchema } from "./Morador.js";
+import { morador } from "./Morador.js";
 
 const condominioSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId },
@@ -12,7 +12,12 @@ const condominioSchema = new mongoose.Schema({
     estado: { type: String},
     municipio: { type: String},
     cep: { type: String},
-    morador: moradorSchema
+    nome_adm: { type: String},
+    cpf_adm: { type: String},
+    email_adm: { type: String},
+    celular_adm: { type: String},
+    senha_adm: { type: String},
+    moradores: [{ type: mongoose.Schema.Types.ObjectId, ref: 'morador'}]
 }, {versionKey: false});
 
 const condominio = mongoose.model("condominio", condominioSchema);

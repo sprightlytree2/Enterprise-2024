@@ -5,8 +5,8 @@ class CondominioController {
     static async listarCondominioPorId(req, res) {
         try {
             const id = req.params.id;
-            const condominio = await condominio.findById(id);
-            res.status(200).json(condominio);
+            const condominioEncontrado = await condominio.findById(id).populate("moradores");
+            res.status(200).json(condominioEncontrado);
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao listar condominio por id`});
         }

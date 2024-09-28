@@ -1,4 +1,5 @@
 import {morador} from "../models/Morador.js";
+import condominioRepo from "../models/Condominio.js"
 
 class MoradorController {
 
@@ -15,7 +16,8 @@ class MoradorController {
     static async cadastrarMorador(req, res){
         try {
             const novoMorador = await morador.create(req.body);
-            res.status(201).json({ message: "Criado com sucesso", morador: novoMorador});
+            const condominioId = String(req.query.condominioId);
+            VincularMoradorAoCondominio(novoMorador, condominioId, res);
         } 
         catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao cadastrar morador`});
@@ -42,5 +44,20 @@ class MoradorController {
         }
     };
 };
+
+async function VincularMoradorAoCondominio(morador, condominioId, res) {
+    
+    const condominioAtualizado = await condominioRepo.findByIdAndUpdate(
+        condominioId,
+        { $push: { moradores: morador._id } }, // Utilizando $push para adicionar o morador ao array
+        { new: true } // Retorna o documento atualizado
+    );
+
+    if (!condominioAtualizado) {
+        return res.status(400).json({ message: "Condomínio não encontrado" });
+    }
+
+    return res.status(201).json({ message: "Morador cadastrado com sucesso", morador: morador});
+}
 
 export default MoradorController;

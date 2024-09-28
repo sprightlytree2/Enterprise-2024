@@ -14,7 +14,7 @@ const moradorSchema = new mongoose.Schema({
     eh_entregador: { type: Boolean },
     senha: { type: String },
     pedido: pedidoSchema
-},  {versionKey: false});
+},  {versionKey: false, collection: "moradors"});
 
 const morador = mongoose.model("morador", moradorSchema);
 
