@@ -1,6 +1,6 @@
 import express from "express";
 import conectaNaDataBase from "./config/dbConnect.js";
-import routes from "./routes/index.js";
+import routes from "./index.js";
 
 const conexao = await conectaNaDataBase();
 
