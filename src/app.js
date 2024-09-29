@@ -5,6 +5,7 @@ import moradoresRoutes from "./routes/moradoresRoutes.js"; // Importando rotas d
 import pedidosRoutes from "./routes/pedidosRoutes.js"; // Importando rotas de pedidos
 import loginRoutes from "./routes/loginRoutes.js";
 import dotenv from 'dotenv';
+import cors from "cors";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ conexao.once("open", () => {
 
 // Middleware para tratar requisições com JSON
 app.use(express.json());
+app.use(cors());
 
 // Registrando as rotas
 app.use(condominiosRoutes); // Usando as rotas de condomínios
