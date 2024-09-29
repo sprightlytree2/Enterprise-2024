@@ -7,9 +7,7 @@ const moradorSchema = new mongoose.Schema({
     celular: { type: String },
     email: { type: String },
     idade: { type: Number },
-    bloco: { type: String },
-    andar: { type: String },
-    apartamento: { type: String },
+    unidade: { type: String },
     eh_entregador: { type: Boolean, default: false },
     senha: { type: String },
     pedidos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'pedido'}]
