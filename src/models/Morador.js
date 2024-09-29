@@ -6,7 +6,7 @@ const moradorSchema = new mongoose.Schema({
     cpf: { type: String },
     celular: { type: String },
     email: { type: String },
-    idade: { type: Number },
+    data_nascimento: { type: String },
     unidade: { type: String },
     eh_entregador: { type: Boolean, default: false },
     senha: { type: String },
