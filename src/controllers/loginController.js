@@ -27,7 +27,7 @@ async function ProcuraMorador(email, senha, res) {
     const moradorEncontrado = await moradorRepo.find({ $and: [{email: email}, {senha: senha}] });
 
     if(moradorEncontrado.length == 0){
-        return { codigo: 400, express_res: res.status(400) }
+        return { codigo: 400, express_res: null }
     }
 
     return { codigo: 200, express_res: res.status(200).json( {id_usuario: moradorEncontrado[0]._id, tipo_usuario: "morador"} )};
