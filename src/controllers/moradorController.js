@@ -38,7 +38,7 @@ class MoradorController {
                 return res.status(400).json("Morador não encontrado");
             }
             
-            res.status(200).json({ message: "Morador atualizado" });
+            res.status(200).json("Morador atualizado");
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao atualizar morador`});
         }
@@ -67,7 +67,7 @@ async function VincularMoradorAoCondominio(morador, condominioId, res) {
         return res.status(400).json({ message: "Condomínio não encontrado" });
     }
 
-    return res.status(201).json({ message: "Morador cadastrado com sucesso", morador: morador});
+    return res.status(201).json({morador: morador});
 }
 
 export default MoradorController;

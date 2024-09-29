@@ -5,9 +5,8 @@ class PedidoController {
 
     static async listarPedidos(req, res) {
         try {
-            const id = req.params.id;
-            const pedidoEncontrado = await pedido.findById(id);
-            res.status(200).json(pedido);
+            const pedidosEncontrados = await pedido.find({});
+            res.status(200).json(pedidosEncontrados);
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao listar pedido por id`});
         }
@@ -49,8 +48,8 @@ class PedidoController {
             if(!pedidoAtualizado){
                 return res.status(400).json("Pedido não encontrado");
             }
-            
-            res.status(200).json({ message: "Pedido atualizado" });
+
+            res.status(200).json("Pedido atualizado");
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao atualizar pedido`});
         }
@@ -60,7 +59,7 @@ class PedidoController {
         try {
             const id = req.params.id;
             await pedido.findByIdAndDelete(id);
-            res.status(200).json({ message: "Pedido excluido" });
+            res.status(200).json("Pedido excluido");
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao excluir pedido`});
         }
@@ -79,7 +78,7 @@ async function VincularPedidoAoCondominio(pedido, moradorId, res) {
         return res.status(400).json({ message: "Morador não encontrado" });
     }
 
-    return res.status(201).json({ message: "Pedido cadastrado com sucesso", pedido: pedido});
+    return res.status(201).json({ pedido: pedido });
 }
 
 export default PedidoController;

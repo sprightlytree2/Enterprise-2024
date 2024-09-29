@@ -20,7 +20,7 @@ class CondominioController {
     static async cadastrarCondominio(req, res){
         try {
             const novoCondominio = await condominio.create(req.body);
-            res.status(201).json({ message: "Criado com sucesso", condominio: novoCondominio});
+            res.status(201).json({ condominio: novoCondominio });
         } 
         catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao cadastrar condominio`});
