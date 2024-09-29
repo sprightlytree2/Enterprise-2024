@@ -30,7 +30,7 @@ async function ProcuraMorador(email, senha, res) {
         return { codigo: 400, express_res: res.status(400) }
     }
 
-    return { codigo: 200, express_res: res.status(200).json( {payload: moradorEncontrado.at(0), tipoUsuario: "morador"} )};
+    return { codigo: 200, express_res: res.status(200).json( {id_usuario: moradorEncontrado[0]._id, tipo_usuario: "morador"} )};
 }
 
 async function ProcurarCondominio(email, senha, res) {
@@ -40,7 +40,7 @@ async function ProcurarCondominio(email, senha, res) {
         return { codigo: 400, express_res: res.status(400).json("Usuario e/ou senha inválidos") }
     }
 
-    return { codigo: 200, express_res: res.status(200).json( {payload: condominioEncontrado.at(0), tipoUsuario: "condominio"} )};
+    return { codigo: 200, express_res: res.status(200).json( {id_usuario: condominioEncontrado[0]._id, tipo_usuario: "condominio"} )};
 }
 
 
