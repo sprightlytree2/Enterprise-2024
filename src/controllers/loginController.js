@@ -16,7 +16,7 @@ class LoginController{
             resposta = await ProcurarCondominio(email, senha);
 
             if(resposta.codigo == 200){
-                return res.status(200).json({ id_usuario: resposta.usuario._id, tipo_usuario: resposta.tipo_usuario, nome_usuario: resposta.usuario.nome});
+                return res.status(200).json({ id_usuario: resposta.usuario._id, tipo_usuario: resposta.tipo_usuario, nome_usuario: resposta.usuario.nome_adm});
             }
 
             return res.status(400).json("Usuario e/ou senha invalidos");
